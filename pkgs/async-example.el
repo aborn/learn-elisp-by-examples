@@ -30,9 +30,9 @@
         ,(async-inject-variables "\\`param-b\\'") 
         (format "param = %s, param-b = %s, param-c = %s"
                 param param-b param-c))
-     'lebe-async-async-param-callback)))
+     'lebe-async-param-callback)))
 
 ;; call back
-(defun lebe-async-async-param-callback (result)
+(defun lebe-async-param-callback (result)
   "finished call"
   (message "async result is %s" result))
