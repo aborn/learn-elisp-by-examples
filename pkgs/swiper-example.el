@@ -3,7 +3,7 @@
 ;; https://github.com/abo-abo/swiper
 
 (require 'ivy)
-(defun lebe-swiper-default ()
+(defun lebe-swiper-ivy-read ()
   "swiper ivy-read example."
   (interactive)
   (let (collection)
