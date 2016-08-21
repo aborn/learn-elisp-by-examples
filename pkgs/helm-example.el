@@ -13,3 +13,20 @@
                                (message "select: %s" (car x))))
           :buffer "*helm test*"
           )))
+
+(defvar lebe-helm-bookmark-list
+  '(
+    ("facebook" "https://www.facebook.com/?_rdr=p")
+    ("github" "https://github.com/aborn")
+    ("gmail" "https://mail.google.com/mail/u/0/#inbox")
+    ("music" "https://play.google.com/music/listen?authuser#/wmp")
+    ("photos" "https://photos.google.com/")
+    ("twitter" "https://twitter.com/")
+    ("water" "https://www.cityofmadison.com/epayment/water/index.cfm")
+    ))
+
+(defun lebe-helm-bookmark-open (link)
+  "Opens a browser bookmark"
+  (interactive
+   (helm-comp-read "Select bookmark: " lebe-helm-bookmark-list))
+  (browse-url link))
