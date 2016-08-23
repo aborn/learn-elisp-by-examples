@@ -7,3 +7,17 @@
     (message "paramete b is not provided, use default.")
     (setq b "ddd"))    ;; set to default value
   (message "a=%s, b=%s, rest-args-length:%d" a b (length args)))
+
+(defun lebe-fun-map-reduce ()
+  "Map-reduce operation."
+  (interactive)
+  (let ((example-list '(1 4 3 8)))
+    (message "resulet is %d"
+             (reduce '+
+                     (mapcar
+                      #'(lambda (x)
+                          (if (> x 3)
+                              1
+                            x))
+                      example-list)))
+    ))
