@@ -32,6 +32,44 @@
                 param param-b param-c))
      'lebe-async-param-callback)))
 
+(defun lebe-async-file-exec (callback)
+  "async"
+  (let ((fname (buffer-file-name)))
+    (async-start
+     `(lambda ()
+        (set 'fname ,fname)
+        fname)
+     callback)))
+
+(defun lebe-show-buffer-name ()
+  (interactive)
+  (message "%s" (buffer-name)))
+
+;; 子进程中文件处理
+(defun lebe-async-file ()
+  "File dealing in subprocess"
+  (interactive)
+  (let* ((fname (buffer-file-name)))
+    (when fname
+      (message "fname=%s" fname)
+      (lebe-async-file-exec
+       (lambda (result)
+         (message "fname async =%s" result)
+         (when (file-exists-p result)
+           (message "file exists!")
+           (with-current-buffer (get-buffer-create result)
+             (erase-buffer)
+             (insert "aaaaaaaaa\nbbbbb")
+             (message "async buffername=%s" (buffer-name))
+             (message "buffer-file-name=%s" (buffer-file-name))
+             (message "content:%s" (buffer-string))
+             (write-file result)
+             ;;(save-buffer)
+             )
+           )
+         )
+       ))))
+
 ;; call back
 (defun lebe-async-param-callback (result)
   "finished call"
