@@ -23,12 +23,12 @@
     ))
 
 (defun lebe-fun-para (&optional a)
+  (interactive)
   (message "a=%s" a)
   (unless a
     (message "not provide a")
     (setq a "bbb"))
   (message "a=%s" a)
   (let ((a "aaa")
-        (b)
-        (c "ccc"))
+        (b) (c "ccc"))
     (message "a=%s  b=%s  c=%s" a b c)))
