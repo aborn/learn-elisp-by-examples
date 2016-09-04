@@ -30,5 +30,5 @@
     (setq a "bbb"))
   (message "a=%s" a)
   (let ((a "aaa")
-        (b) (c "ccc"))
-    (message "a=%s  b=%s  c=%s" a b c)))
+        (b) (c "ccc") d e)
+    (message "a=%s  b=%s  c=%s d=%s e=%s" a b c d e)))
