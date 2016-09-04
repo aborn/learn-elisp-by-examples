@@ -32,3 +32,17 @@
   (let ((a "aaa")
         (b) (c "ccc") d e)
     (message "a=%s  b=%s  c=%s d=%s e=%s" a b c d e)))
+
+;; 注意是值传递，值传递
+(defun lebe-fun-value-ref-call ()
+  (let ((a '((a . "aa")
+             (b . "bb"))))
+    (message "call before length %s" (length a))
+    (lebe-fun-value-ref a)
+    (message "call after length %s" (length a))))
+
+(defun lebe-fun-value-ref (a)
+  "add item"
+  (message "call in before length %s" (length a))
+  (add-to-list 'a '(c . "cc"))
+  (message "call in after length %s" (length a)))
