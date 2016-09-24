@@ -22,8 +22,10 @@
                       example-list)))
     ))
 
-(defun lebe-fun-para (&optional a)
+(defun lebe-fun-para (&optional a b)
   (interactive)
+  (let ((b (or b "bbbbcc")))
+    (message "b===%s" b))
   (message "a=%s" a)
   (unless a
     (message "not provide a")
