@@ -48,3 +48,9 @@
   (message "call in before length %s" (length a))
   (add-to-list 'a '(c . "cc"))
   (message "call in after length %s" (length a)))
+
+;; 来源 https://www.gnu.org/software/emacs/manual/html_node/elisp/Prefix-Command-Arguments.html
+(defun display-prefix (arg)
+  "Display the value of the raw prefix arg."
+  (interactive "P")
+  (message "%s" arg))
