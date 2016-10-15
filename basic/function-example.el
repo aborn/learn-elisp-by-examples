@@ -13,7 +13,7 @@
   (interactive)
   (let ((example-list '(1 4 3 8)))
     (message "resulet is %d"
-             (reduce '+
+             (cl-reduce '+
                      (mapcar
                       #'(lambda (x)
                           (if (> x 3)
