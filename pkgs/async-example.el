@@ -13,10 +13,11 @@
         (require 'aborn-log)
         (aborn/log "This is a test %S" begin-time)
         (sleep-for 3)
-        222)
+        begin-time)
      ;; What to do when it finishes
      (lambda (result)
-       (message "Async process done, result should be 222: %s" result)))))
+       (message "Async process done, time cost: %ss"
+                (float-time (time-subtract (current-time) result)))))))
 
 ;; 在子进程中插入参数
 ;; add some parameters in sub-process
