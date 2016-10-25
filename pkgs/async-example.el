@@ -8,9 +8,11 @@
          (bexp "gggggg"))
     (async-start
      ;; What to do in the child process
+     ;; 注意：如果是lexical-binding:t的话，这里的bexp参数会找不到
      `(lambda ()
         ,(async-inject-variables "\\`begin-time\\'")
         ,(async-inject-variables "\\`bexp\\'")
+        ,(async-inject-variables "\\`load-path\\'") ;; add main process load-path
         (add-to-list 'load-path "~/.spacemacs.d/parts")
         (require 'aborn-log)
         (aborn/log (format "This is a test %s %S" bexp begin-time))
