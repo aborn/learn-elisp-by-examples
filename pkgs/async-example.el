@@ -4,17 +4,19 @@
 ;; common async example
 (defun lebe-async-example ()
   (interactive)
-  (async-start
-   ;; What to do in the child process
-   (lambda ()
-     (add-to-list 'load-path "~/.spacemacs.d/parts")
-     (require 'aborn-log)
-     (aborn/log "This is a test %s" aa)
-     (sleep-for 3)
-     222))
-  ;; What to do when it finishes
-  (lambda (result)
-    (message "Async process done, result should be 222: %s" result)))
+  (let* ((begin-time (current-time)))
+    (async-start
+     ;; What to do in the child process
+     `(lambda ()
+        ,(async-inject-variables "\\`begin-time\\'")
+        (add-to-list 'load-path "~/.spacemacs.d/parts")
+        (require 'aborn-log)
+        (aborn/log "This is a test %S" begin-time)
+        (sleep-for 3)
+        222)
+     ;; What to do when it finishes
+     (lambda (result)
+       (message "Async process done, result should be 222: %s" result)))))
 
 ;; 在子进程中插入参数
 ;; add some parameters in sub-process
