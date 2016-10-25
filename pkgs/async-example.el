@@ -4,14 +4,16 @@
 ;; common async example
 (defun lebe-async-example ()
   (interactive)
-  (let* ((begin-time (current-time)))
+  (let* ((begin-time (current-time))
+         (bexp "gggggg"))
     (async-start
      ;; What to do in the child process
      `(lambda ()
         ,(async-inject-variables "\\`begin-time\\'")
+        ,(async-inject-variables "\\`bexp\\'")
         (add-to-list 'load-path "~/.spacemacs.d/parts")
         (require 'aborn-log)
-        (aborn/log "This is a test %S" begin-time)
+        (aborn/log (format "This is a test %s %S" bexp begin-time))
         (sleep-for 3)
         begin-time)
      ;; What to do when it finishes
