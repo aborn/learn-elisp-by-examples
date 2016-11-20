@@ -14,12 +14,12 @@
   (let ((example-list '(1 4 3 8)))
     (message "resulet is %d"
              (cl-reduce '+
-                     (mapcar
-                      #'(lambda (x)
-                          (if (> x 3)
-                              1
-                            x))
-                      example-list)))
+                        (mapcar
+                         #'(lambda (x)
+                             (if (> x 3)
+                                 1
+                               x))
+                         example-list)))
     ))
 
 (defun lebe-fun-para (&optional a b)
@@ -48,6 +48,18 @@
   (message "call in before length %s" (length a))
   (add-to-list 'a '(c . "cc"))
   (message "call in after length %s" (length a)))
+
+(defun lebe-fun-exit-any-arbitrary-point ()
+  "How to exit from a function at any arbitrary point, in elisp
+   http://stackoverflow.com/questions/16248620/how-to-exit-from-a-function-at-any-arbitrary-point-in-elisp
+   "
+  (interactive)
+  (let ((a "a"))
+    (catch 'my-tag
+      (when (equal "a" a)
+        (message "ggg")
+        (throw 'my-tag "non-local exit value"))
+      (message "normal exit value"))))
 
 ;; 来源 https://www.gnu.org/software/emacs/manual/html_node/elisp/Prefix-Command-Arguments.html
 (defun display-prefix (arg)
