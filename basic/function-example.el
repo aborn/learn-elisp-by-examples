@@ -55,10 +55,9 @@
    "
   (interactive)
   (let ((a "a"))
-    (catch 'my-tag
+    (catch 'return
       (when (equal "a" a)
-        (message "ggg")
-        (throw 'my-tag "non-local exit value"))
+        (throw 'return "non-local exit value"))
       (message "normal exit value"))))
 
 ;; 来源 https://www.gnu.org/software/emacs/manual/html_node/elisp/Prefix-Command-Arguments.html
