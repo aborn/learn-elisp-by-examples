@@ -1,7 +1,8 @@
 ;; 函数相关的例子
 
-;; 函数可选参数
+(require 'cl-lib)
 (defun lebe-fun-parameter (a &optional b &rest args)
+  "函数可选参数例子"
   (interactive)
   (when (null b)
     (message "paramete b is not provided, use default.")
@@ -9,7 +10,8 @@
   (message "a=%s, b=%s, rest-args-length:%d" a b (length args)))
 
 (defun lebe-fun-map-reduce ()
-  "Map-reduce operation."
+  "Map-reduce operation.对一个List先做map成另一个list，再做reduce操作。
+  依赖cl-lib这个package。"
   (interactive)
   (let ((example-list '(1 4 3 8)))
     (message "resulet is %d"
@@ -23,6 +25,7 @@
     ))
 
 (defun lebe-fun-para (&optional a b)
+  "函数参数及let里的参数"
   (interactive)
   (let ((b (or b "bbbbcc")))
     (message "b===%s" b))
