@@ -1,0 +1,9 @@
+#+TITLE: learn-elisp-by-examples
+
+learn elisp by examples, 通过例子学习Emacs Lisp
+
+* basic
+这个目录里主要是 *Emacs Lisp* 语言的一些基本用法，如函数、文本的操作等。
+
+* pkgs
+主要是第三方包的使用例子，如helm、ivy等操作示例。
